@@ -24,7 +24,7 @@ class Rosetta(object):
         result = self.client.translate(text, target_language=target, source_language=source)
         return result
 
-    def translate_file(self, target, input_filename, output_filename, source=None, batch_size=10):
+    def translate_file(self, target, output_filename, input_filename, source=None, batch_size=10):
         input_lines = list()
         output_lines = list()
 
@@ -48,5 +48,18 @@ class Rosetta(object):
 
 if __name__ == "__main__":
     rosetta = Rosetta()
-    # result = rosetta.translate_text("zh-CN", "Ban")
-    rosetta.translate_file("zh-CN", "./input.data", "./output.data")
+
+    # # Get supported languages
+    print(rosetta.client.get_languages())
+    
+    # Detect source_language and translate to 'zh'
+    print(rosetta.translate_text("zh", "Hello, My name is Du Mingzhe."))
+
+    # Translate by given source language and target language
+    print(rosetta.translate_text("zh", "Hello, My name is Du Mingzhe.", "en"))
+
+    # Detect source_language and translate to 'zh' in the file way
+    rosetta.translate_file("zh-CN", "./output.data", "./input.data")
+
+    # Translate by given source language and target language in the file way
+    rosetta.translate_file("zh-CN", "./output.data", "./input.data", "en")
