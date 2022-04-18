@@ -28,19 +28,19 @@ class Rosetta(object):
         input_lines = list()
         output_lines = list()
 
-        # Load input lines from input file
+        # [Input=>] Load input lines from input file
         with open(input_filename, 'r', encoding='utf8') as input_file:
             for line in input_file.readlines():
                 input_lines += [line.strip()]
 
         # Batch processing
-        print(f"Approximate batches: {len(input_lines) / batch_size}")
-        for batch_lines in tqdm(self.batch(input_lines, batch_size)):
+        # TODO(mingzhe): parallel processing with a pool
+        for batch_lines in tqdm(self.batch(input_lines, batch_size), total=len(input_lines) // batch_size):
             batch_result = self.translate_text(target, batch_lines)
             for result in batch_result:
                 output_lines += [result["translatedText"]]
         
-        # Write output lines to output files
+        # [Output<=] Write output lines to output files
         with open(output_filename, 'w', encoding='utf8') as output_file:
             for line in output_lines:
                 output_file.write(line + "\n")
