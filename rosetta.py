@@ -49,7 +49,7 @@ class Rosetta(object):
 if __name__ == "__main__":
     rosetta = Rosetta()
 
-    # # Get supported languages
+    # Get supported languages
     print(rosetta.client.get_languages())
     
     # Detect source_language and translate to 'zh'

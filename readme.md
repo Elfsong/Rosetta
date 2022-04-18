@@ -1,22 +1,32 @@
-# Rosetta 
+# Rosetta
 
 ## Install
 
-```
+```shell
+# Create a conda environment
 conda create -n rosetta python=3.7
 conda activate rosetta
 ```
 
-```
+```shell
+# Install Google Translate Client
 pip install google-cloud-translate==2.0.1
 ```
+## Usage
 
-```
-# Install Google Cloud CLI
+```python
+# Get supported languages
+print(rosetta.client.get_languages())
+    
+# Detect source_language and translate to 'zh'
+print(rosetta.translate_text("zh", "Hello, My name is Du Mingzhe."))
 
-# Import Google Cloud Key
-export GOOGLE_APPLICATION_CREDENTIALS="./lucky-re-67b193248abd.json"
+# Translate by given source language and target language
+print(rosetta.translate_text("zh", "Hello, My name is Du Mingzhe.", "en"))
 
-# Check Key
-gcloud auth application-default print-access-token
+# Detect source_language and translate to 'zh' in the file way
+rosetta.translate_file("zh", "./output.data", "./input.data")
+
+# Translate by given source language and target language in the file way
+rosetta.translate_file("zh", "./output.data", "./input.data", "en")
 ```
