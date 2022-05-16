@@ -1,0 +1,9 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it as below. Thank you."
+authors:
+  - family-names: Mingzhe
+    given-names: Du
+    orcid: https://orcid.org/0000-0001-7832-0459
+title: "Rosetta: A high performance translation tool powered by Google Trasnlate"
+version: 0.0.1
+date-released: 2022-05-01
